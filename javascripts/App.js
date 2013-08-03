@@ -25,11 +25,11 @@
           username: username
         });
         infoView = new InformationView({
-          el: $("#info .content"),
+          el: $("#info"),
           model: info
         });
         bioView = new BiographyView({
-          el: $("#bio .content"),
+          el: $("#bio"),
           model: bio
         });
         info.fetch();

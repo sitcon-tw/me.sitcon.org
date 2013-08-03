@@ -7478,3 +7478,8 @@ body {
   margin-top: 5em;
   background: white;
 }
+
+/* line 28, ../sass/main.scss */
+.loading {
+  margin-top: 0.75em;
+}
