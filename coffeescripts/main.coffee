@@ -30,4 +30,7 @@ require.config {
 }
 
 require [
-], () ->
+  'App'
+], (App) ->
+  new App
+  Backbone.history.start {pushState: true}
