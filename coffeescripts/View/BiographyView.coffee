@@ -7,5 +7,6 @@ define [
       options = options || {}
     render: ->
       rendered = Markdown.toHTML @.model.get('content')
+      rendered = "<h1>Biography</h1>" + rendered
       $(@.el).html(rendered)
   }
