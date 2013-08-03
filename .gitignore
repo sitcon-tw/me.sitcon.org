@@ -1,0 +1,7 @@
+stylesheets
+fire_app_log.txt
+.sass-cache
+.coffeescript-cache
+javascripts/*
+!javascripts/vendor
+!javascripts/template
