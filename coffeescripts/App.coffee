@@ -28,8 +28,8 @@ define [
       info = new Information {username: username}
       bio = new Biography {username: username}
 
-      infoView = new InformationView {el: $("#info .content"), model: info}
-      bioView = new BiographyView {el: $("#bio .content"), model: bio}
+      infoView = new InformationView {el: $("#info"), model: info}
+      bioView = new BiographyView {el: $("#bio"), model: bio}
 
       info.fetch()
       bio.fetch()
