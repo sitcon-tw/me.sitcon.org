@@ -7476,10 +7476,11 @@ body {
 /* line 23, ../sass/main.scss */
 #app {
   margin-top: 5em;
+  margin-bottom: 5em;
   background: white;
 }
 
-/* line 28, ../sass/main.scss */
+/* line 29, ../sass/main.scss */
 .loading {
   margin-top: 0.75em;
 }
