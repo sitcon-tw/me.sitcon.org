@@ -1,0 +1,18 @@
+/**
+ * Base Style
+ */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: "LantingHei TC", "Apple LiGothic", sans-serif;
+  @include font-smoothing(on);
+}
+
+@include establish-baseline;
+
+.container {
+  @include container;
+}

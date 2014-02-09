@@ -1,0 +1,76 @@
+/**
+ * Staff List
+ */
+
+.background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -100;
+
+  @include background(
+    image-url("sitcon_jiang_line.jpg") no-repeat right top fixed
+  );
+
+  @include background-size(container);
+}
+
+.staffs {
+  float: left;
+  padding-right: 2em;
+
+  color: $lightFontColor;
+  background: rgba($secondaryColor, 0.90);
+
+  a {
+    color: $lightFontColor;
+    text-decoration: none;
+  }
+
+  h2 {
+    @include hide-text;
+    @include rhythm(0.25, 0.25, 0.25, 0.25);
+    @include background(
+      image-url("logo_white.svg") no-repeat left center
+    );
+  }
+}
+
+.staff {
+  position: relative;
+
+  text-align: left;
+
+  @include container;
+  @include transition(250ms ease-in);
+  @include rhythm(0.25, 0.25, 0, 0.25);
+
+  .avatar {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &:hover, &:active, &:focus {
+    color: $fontColor;
+    background: white;
+
+    @include translateX(2em);
+
+    a {
+      color: $fontColor;
+    }
+  }
+
+  h4 {
+    display: inline;
+    margin-left: 1em;
+    @include rhythm(0.15, 0, 0, 0.5);
+  }
+
+  .sub-header {
+    margin-left: 0.5em;
+  }
+
+}

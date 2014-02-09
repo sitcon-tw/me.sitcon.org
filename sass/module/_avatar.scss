@@ -1,0 +1,24 @@
+/**
+ * Avatar Module
+ */
+
+.avatar img {
+  @include transition(250ms ease-in);
+  @include box-shadow(0 0 5px adjust-lightness($secondaryColor, 50%));
+
+  &.light {
+    border: 2px solid white;
+  }
+
+  &:hover, &:active, &:focus {
+    @include box-shadow(0 0 10px white);
+  }
+
+  &.ellipse {
+    @include border-radius(50%);
+  }
+
+  &.round {
+    @include border-radius($roundSize);
+  }
+}
