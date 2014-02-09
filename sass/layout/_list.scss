@@ -44,7 +44,7 @@
   text-align: left;
 
   @include container;
-  @include transition(250ms ease-in);
+  @include transition(250ms ease-out);
   @include rhythm(0.25, 0.25, 0, 0.25);
 
   .avatar {
