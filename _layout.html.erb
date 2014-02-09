@@ -18,7 +18,7 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div id="main" ng-view>
+        <div id="main" ng-view ng-class="{loading: loading}">
           <%= yield %>
         </div>
 
@@ -29,11 +29,15 @@
             g.src='//www.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
+
         <!-- Scripts -->
         <%= bower_tag("zepto/zepto.min") %>
         <%= bower_tag("angular/angular.min") %>
         <%= bower_tag("angular-route/angular-route.min") %>
+        <%= bower_tag("angular-resource/angular-resource.min") %>
         <%= bower_tag("markdown/lib/markdown") %>
+        <%= javascript_include_tag("services/Staff") %>
+        <%= javascript_include_tag("services/Github") %>
         <%= javascript_include_tag("app") %>
     </body>
 </html>

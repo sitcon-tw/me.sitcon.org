@@ -2,7 +2,13 @@
 # SITCON Staff Business Card
 ###
 
-App = angular.module "SITCON", ["ngRoute"]
+App = angular.module "SITCON", [
+  # Angular Core
+  "ngRoute"
+
+  # Services
+  "Service.Staff"
+]
 
 ###
 # Config
@@ -27,11 +33,19 @@ App.config ["$routeProvider", "$locationProvider", ($routeProvider, $locationPro
 # Controllers
 ###
 
-App.controller "ListCtrl", ["$scope", ($scope) ->
-  $scope.message = "Hello, List"
+App.controller "ListCtrl", ["$scope", "Staff", ($scope, Staff) ->
+  $scope.loading = true
+  $scope.staffList = {}
+  Staff.get (result) ->
+    $scope.loading = false
+    $scope.staffList = result
 ]
 
-App.controller "ProfileCtrl", ["$scope", ($scope) ->
-  $scope.message = "Hello, Profile"
+App.controller "ProfileCtrl", ["$scope", "$routeParams", "Staff", ($scope, $params, Staff) ->
+  $scope.loading = true
+  $scope.profile = {}
+  Staff.get {username: $params.username}, (result)->
+    $scope.loading = false
+    $scope.profile = result
 ]
 

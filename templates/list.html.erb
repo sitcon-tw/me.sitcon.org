@@ -1,1 +1,7 @@
-{{message}}
+<ul>
+  <li ng-repeat="(id, staff) in staffList">
+    <a ng-href="/#/{{id}}">
+      {{staff.name}}
+    </a>
+  </li>
+</ul>
