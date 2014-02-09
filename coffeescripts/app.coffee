@@ -5,9 +5,11 @@
 App = angular.module "SITCON", [
   # Angular Core
   "ngRoute"
+  "ngSanitize"
 
   # Services
   "Service.Staff"
+  "Service.Github"
 ]
 
 ###
@@ -30,6 +32,14 @@ App.config ["$routeProvider", "$locationProvider", ($routeProvider, $locationPro
 ]
 
 ###
+# Filter
+###
+
+App.filter "markdown", ()->
+  return (input) ->
+    markdown.toHTML(input) if input
+
+###
 # Controllers
 ###
 
@@ -41,11 +51,23 @@ App.controller "ListCtrl", ["$scope", "Staff", ($scope, Staff) ->
     $scope.staffList = result
 ]
 
-App.controller "ProfileCtrl", ["$scope", "$routeParams", "Staff", ($scope, $params, Staff) ->
+App.controller "ProfileCtrl", ["$scope", "$routeParams", "$q", "Staff", "Github", ($scope, $params, $q, Staff, Github) ->
   $scope.loading = true
   $scope.profile = {}
-  Staff.get {username: $params.username}, (result)->
+  $scope.infromation = {}
+  $scope.biography = {markdown: ""}
+
+  params = {username: $params.username}
+
+  $q.all({
+    profile: Staff.get(params)
+    information: Github.info(params)
+    biography: Github.biography(params)
+  }).then (results) ->
     $scope.loading = false
-    $scope.profile = result
+    $scope.profile = results.profile
+    $scope.infromation = results.information
+    $scope.biography = results.biography
+
 ]
 
