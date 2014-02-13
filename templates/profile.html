@@ -20,9 +20,14 @@
       </div>
     </div>
   </section>
-  <div class="navigation" ng-hide="loading" class="fadeIn">
+  <div ng-hide="loading" ng-show="hasError" class="fadeIn">
     <div class="container">
-      <a href="/#/" title="Back" class="back">Back</a>
+      <div class="error" ng-show="hasError">
+        {{error}}
+      </div>
+      <div class="navigation">
+        <a href="/#/" title="Back" class="back">Back</a>
+      </div>
     </div>
   </div>
 </div>

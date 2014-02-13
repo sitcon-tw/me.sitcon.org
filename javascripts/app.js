@@ -83,7 +83,7 @@
   };
 
   App.controller("ProfileCtrl", [
-    "$scope", "$routeParams", "$q", "Staff", "Github", function($scope, $params, $q, Staff, Github) {
+    "$scope", "$routeParams", "$q", "$location", "Staff", "Github", function($scope, $params, $q, $location, Staff, Github) {
       var linkTypes, params;
 
       linkTypes = ["website", "facebook", "plurk", "twitter"];
@@ -92,6 +92,7 @@
       $scope.information = {};
       $scope.biography = {};
       $scope.links = [];
+      $scope.hasError = false;
       params = {
         username: $params.username
       };
@@ -116,6 +117,9 @@
           }
         }
         return _results;
+      }, function(error) {
+        $scope.hasError = true;
+        return $scope.error = "喔喔，好像找不到這個人的自我介紹。";
       });
     }
   ]);
