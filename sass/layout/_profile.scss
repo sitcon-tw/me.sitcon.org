@@ -88,3 +88,10 @@
     }
   }
 }
+
+.error {
+  padding: 1.5em;
+  color: $lightFontColor;
+  background: adjust-hue($primaryColor, -100deg);
+  @include rhythm(0.25, 0.25, 0.25, 0.25);
+}

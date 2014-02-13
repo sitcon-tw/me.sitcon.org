@@ -59,13 +59,14 @@ generateLinkObject = (type, data) ->
     when "plurk" then return {name: "Plurk", href: "https://plurk.com/#{data}"}
     when "twitter" then return {name: "Twitter", href: "https://twitter.com/#{data}"}
 
-App.controller "ProfileCtrl", ["$scope", "$routeParams", "$q", "Staff", "Github", ($scope, $params, $q, Staff, Github) ->
+App.controller "ProfileCtrl", ["$scope", "$routeParams", "$q", "$location", "Staff", "Github", ($scope, $params, $q, $location, Staff, Github) ->
   linkTypes = ["website", "facebook", "plurk", "twitter"]
   $scope.loading = true
   $scope.profile = {}
   $scope.information = {}
   $scope.biography = {}
   $scope.links = []
+  $scope.hasError = false
 
   params = {username: $params.username}
 
@@ -82,5 +83,10 @@ App.controller "ProfileCtrl", ["$scope", "$routeParams", "$q", "Staff", "Github"
     # Load Links
     for linkType in linkTypes
       $scope.links.push(generateLinkObject(linkType, $scope.information[linkType])) if $scope.information[linkType]
+
+  , (error) ->
+    $scope.hasError = true
+    $scope.error = "喔喔，好像找不到這個人的自我介紹。"
+
 ]
 
