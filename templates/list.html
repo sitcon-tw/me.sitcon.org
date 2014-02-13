@@ -1,0 +1,20 @@
+<!-- AngularJS Template -->
+<div class="staffs">
+  <div class="container">
+    <h2>SITCON Staffs</h2>
+  </div>
+  <aside class="staff pushIn" ng-repeat="staff in staffList">
+    <div class="avatar">
+      <a ng-href="/#/{{staff.id}}">
+        <img ng-src="{{staff.avatar}}&s=32" class="light ellipse" alt="{{staff.name}}" />
+      </a>
+    </div>
+    <h4>
+      <a ng-href="/#/{{staff.id}}">
+        {{staff.name}}
+        <span class="sub-header">{{staff.title}}</span>
+      </a>
+    </h4>
+  </aside>
+</div>
+<div class="background"></div>

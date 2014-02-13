@@ -1,0 +1,28 @@
+<!-- AngularJS Template -->
+<div ng-hide="loading" class="fadeIn">
+  <section id="profile">
+    <header id="information">
+      <div class="container">
+        <div class="profile avatar">
+          <img ng-src="{{profile.avatar}}&s=150" alt="{{profile.name}}" />
+        </div>
+        <div class="profile information">
+          <h1>{{profile.name}}</h1>
+          <div class="link list">
+            <span class="item fadeIn" ng-repeat="link in links"><a ng-href="{{link.href}}" target="_blank" title="{{link.name}}">{{link.name}}</a></span>
+          </div>
+        </div>
+      </div>
+    </header>
+    <article id="biography">
+      <div class="container">
+        <div ng-bind-html="biography | markdown"></div>
+      </div>
+    </div>
+  </section>
+  <div class="navigation" ng-hide="loading" class="fadeIn">
+    <div class="container">
+      <a href="/#/" title="Back" class="back">Back</a>
+    </div>
+  </div>
+</div>
