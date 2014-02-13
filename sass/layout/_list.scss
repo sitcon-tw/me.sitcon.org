@@ -20,6 +20,7 @@
 .staffs {
   float: left;
   padding-right: 2em;
+  min-width: 300px;
 
   color: $lightFontColor;
   background: rgba($secondaryColor, 0.90);

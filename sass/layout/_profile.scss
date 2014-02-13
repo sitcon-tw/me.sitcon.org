@@ -7,7 +7,7 @@
 
 #information {
   color: $lightFontColor;
-  background: $secondaryColor;
+  background: rgba($secondaryColor, 0.9);
 
   @include rhythm(0, 2, 2, 0);
 
@@ -59,7 +59,7 @@
   margin-left: 1em;
 
   color: $lightFontColor;
-  background: $primaryColor;
+  background: rgba($secondaryColor, 0.9);
   text-decoration: none;
   text-transform: uppercase;
 
@@ -76,7 +76,7 @@
     height: 0;
 
     border: 1em solid transparent;
-    border-right: 1em solid $primaryColor;
+    border-right: 1em solid rgba($secondaryColor, 0.9);
 
     @include transition(100ms ease-out);
   }
