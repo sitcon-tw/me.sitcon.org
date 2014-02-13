@@ -7,7 +7,9 @@
 App = angular.module "Service.Github", ["ngResource"]
 
 App.factory "Github", ["$resource", ($resource)->
-  return $resource "https://api.github.com/repos/sitcon-tw/staff-card/contents/:username/:file", {
+  url = "https://api.github.com/repos/sitcon-tw/staff-card/contents/:username/:file"
+  #url = "http://localhost/:username/:file"
+  return $resource url, {
   }, {
     info: {
       method: "GET"

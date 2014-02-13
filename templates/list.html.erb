@@ -2,14 +2,14 @@
   <div class="container">
     <h2>SITCON Staffs</h2>
   </div>
-  <aside class="staff" ng-repeat="(id, staff) in staffList">
+  <aside class="staff" ng-repeat="staff in staffList">
     <div class="avatar">
-      <a ng-href="/#/{{id}}">
-        <img src="{{staff.avatar}}&s=32" class="light ellipse" alt="{{staff.name}}" />
+      <a ng-href="/#/{{staff.id}}">
+        <img ng-src="{{staff.avatar}}&s=32" class="light ellipse" alt="{{staff.name}}" />
       </a>
     </div>
     <h4>
-      <a ng-href="/#/{{id}}">
+      <a ng-href="/#/{{staff.id}}">
         {{staff.name}}
         <span class="sub-header">{{staff.title}}</span>
       </a>

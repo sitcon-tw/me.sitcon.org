@@ -1,0 +1,90 @@
+/**
+ * Profile Layout
+ */
+
+#profile {
+}
+
+#information {
+  color: $lightFontColor;
+  background: $secondaryColor;
+
+  @include rhythm(0, 2, 2, 0);
+
+  .profile.avatar {
+    text-align: center;
+    @include span-columns(3);
+
+    img {
+      border: 3px solid $lightFontColor;
+    }
+  }
+
+  .profile.information {
+    @include span-columns(9 omega);
+  }
+}
+
+.link {
+
+  a {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    color: $primaryColor;
+    text-decoration: none;
+
+    @include transition(100ms ease-out);
+    @include rhythm(0.15, 0.25, 0.25, 0.15);
+
+    &:hover {
+      color: $lightFontColor;
+      background: $primaryColor;
+    }
+  }
+
+  .item {
+    display: block;
+    @include rhythm(0.15, 0.10, 0.10, 0.15);
+  }
+}
+
+.navigation {
+  @include rhythm(1, 0, 1, 0);
+}
+
+.back {
+  position: relative;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  margin-left: 1em;
+
+  color: $lightFontColor;
+  background: $primaryColor;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  @include rhythm(0.25, 0.2, 0.2, 0.25);
+  @include box-shadow(0 0 10px rgba($secondaryColor, 0.25));
+  @include transition(100ms ease-out);
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -2em;
+    width: 0;
+    height: 0;
+
+    border: 1em solid transparent;
+    border-right: 1em solid $primaryColor;
+
+    @include transition(100ms ease-out);
+  }
+
+  &:hover {
+    background: darken($primaryColor, 10%);
+    &:before {
+      border-right-color: darken($primaryColor, 10%);
+    }
+  }
+}

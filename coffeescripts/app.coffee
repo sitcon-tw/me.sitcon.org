@@ -37,7 +37,7 @@ App.config ["$routeProvider", "$locationProvider", ($routeProvider, $locationPro
 
 App.filter "markdown", ()->
   return (input) ->
-    markdown.toHTML(input) if input
+    markdown.toHTML(input.toString()) if input
 
 ###
 # Controllers
@@ -48,26 +48,38 @@ App.controller "ListCtrl", ["$scope", "Staff", ($scope, Staff) ->
   $scope.staffList = {}
   Staff.get (result) ->
     $scope.loading = false
-    $scope.staffList = result
+    $scope.staffList = result.users
 ]
 
+generateLinkObject = (type, data) ->
+  switch type
+    when "website" then return {name: "Website", href: data}
+    when "facebook" then return {name: "Facebook", href: "https://fb.me/#{data}"}
+    when "plurk" then return {name: "Plurk", href: "https://plurk.com/#{data}"}
+    when "twitter" then return {name: "Twitter", href: "https://twitter.com/#{data}"}
+
 App.controller "ProfileCtrl", ["$scope", "$routeParams", "$q", "Staff", "Github", ($scope, $params, $q, Staff, Github) ->
+  linkTypes = ["website", "facebook", "plurk", "twitter"]
   $scope.loading = true
   $scope.profile = {}
-  $scope.infromation = {}
-  $scope.biography = {markdown: ""}
+  $scope.information = {}
+  $scope.biography = {}
+  $scope.links = []
 
   params = {username: $params.username}
 
   $q.all({
-    profile: Staff.get(params)
-    information: Github.info(params)
-    biography: Github.biography(params)
+    profile: (Staff.get(params)).$promise
+    information: (Github.info(params)).$promise
+    biography: (Github.biography(params)).$promise
   }).then (results) ->
     $scope.loading = false
-    $scope.profile = results.profile
-    $scope.infromation = results.information
-    $scope.biography = results.biography
+    $scope.profile = results.profile.user
+    $scope.information = results.information
+    $scope.biography = results.biography.markdown
 
+    # Load Links
+    for linkType in linkTypes
+      $scope.links.push(generateLinkObject(linkType, $scope.information[linkType])) if $scope.information[linkType]
 ]
 
