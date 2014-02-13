@@ -16,3 +16,7 @@ body {
 .container {
   @include container;
 }
+
+#main {
+  height: 100%;
+}

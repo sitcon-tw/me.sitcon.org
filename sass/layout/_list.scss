@@ -24,6 +24,8 @@
   color: $lightFontColor;
   background: rgba($secondaryColor, 0.90);
 
+  min-height: 100%;
+
   a {
     color: $lightFontColor;
     text-decoration: none;
@@ -40,6 +42,7 @@
 
 .staff {
   position: relative;
+  min-height: 3em;
 
   text-align: left;
 

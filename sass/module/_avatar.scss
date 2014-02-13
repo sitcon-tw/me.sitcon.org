@@ -2,6 +2,10 @@
  * Avatar Module
  */
 
+.avatar {
+  @include transition(300ms ease-in);
+}
+
 .avatar img {
   @include transition(250ms ease-in);
   @include box-shadow(0 0 5px adjust-lightness($secondaryColor, 50%));

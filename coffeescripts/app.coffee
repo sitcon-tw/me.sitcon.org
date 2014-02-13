@@ -6,6 +6,7 @@ App = angular.module "SITCON", [
   # Angular Core
   "ngRoute"
   "ngSanitize"
+  "ngAnimate"
 
   # Services
   "Service.Staff"
