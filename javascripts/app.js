@@ -50,11 +50,12 @@
     "$scope", "Staff", function($scope, Staff) {
       $scope.loading = true;
       $scope.staffList = {};
-      return $(document).ready(function() {
-        return Staff.get(function(result) {
-          $scope.loading = false;
-          return $scope.staffList = result.users;
-        });
+      Staff.get(function(result) {
+        $scope.loading = false;
+        return $scope.staffList = result.users;
+      });
+      return $scope.$on("$destory", function() {
+        return $scope.staffList = null;
       });
     }
   ]);
@@ -98,32 +99,30 @@
       params = {
         username: $params.username
       };
-      return $(document).ready(function() {
-        return $q.all({
-          profile: (Staff.get(params)).$promise,
-          information: (Github.info(params)).$promise,
-          biography: (Github.biography(params)).$promise
-        }).then(function(results) {
-          var linkType, _i, _len, _results;
+      return $q.all({
+        profile: (Staff.get(params)).$promise,
+        information: (Github.info(params)).$promise,
+        biography: (Github.biography(params)).$promise
+      }).then(function(results) {
+        var linkType, _i, _len, _results;
 
-          $scope.loading = false;
-          $scope.profile = results.profile.user;
-          $scope.information = results.information;
-          $scope.biography = results.biography.markdown;
-          _results = [];
-          for (_i = 0, _len = linkTypes.length; _i < _len; _i++) {
-            linkType = linkTypes[_i];
-            if ($scope.information[linkType]) {
-              _results.push($scope.links.push(generateLinkObject(linkType, $scope.information[linkType])));
-            } else {
-              _results.push(void 0);
-            }
+        $scope.loading = false;
+        $scope.profile = results.profile.user;
+        $scope.information = results.information;
+        $scope.biography = results.biography.markdown;
+        _results = [];
+        for (_i = 0, _len = linkTypes.length; _i < _len; _i++) {
+          linkType = linkTypes[_i];
+          if ($scope.information[linkType]) {
+            _results.push($scope.links.push(generateLinkObject(linkType, $scope.information[linkType])));
+          } else {
+            _results.push(void 0);
           }
-          return _results;
-        }, function(error) {
-          $scope.hasError = true;
-          return $scope.error = "喔喔，好像找不到這個人的自我介紹。";
-        });
+        }
+        return _results;
+      }, function(error) {
+        $scope.hasError = true;
+        return $scope.error = "喔喔，好像找不到這個人的自我介紹。";
       });
     }
   ]);
