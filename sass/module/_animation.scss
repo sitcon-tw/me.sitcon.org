@@ -32,4 +32,9 @@
   &.ng-hide, &.ng-enter, &.ng-leave {
     left: -100%;
   }
+
+  &.ng-enter-stagger {
+    @include transition-delay(50ms);
+    @include transition-duration(0s);
+  }
 }

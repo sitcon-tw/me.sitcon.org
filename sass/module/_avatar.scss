@@ -7,6 +7,9 @@
 }
 
 .avatar img {
+  min-width: 32px;
+  min-height: 32px;
+
   @include transition(250ms ease-in);
   @include box-shadow(0 0 5px adjust-lightness($secondaryColor, 50%));
 

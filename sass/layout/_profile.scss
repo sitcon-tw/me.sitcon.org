@@ -16,6 +16,9 @@
     @include span-columns(3);
 
     img {
+      min-width: 150px;
+      min-height: 150px;
+
       border: 3px solid $lightFontColor;
     }
   }
