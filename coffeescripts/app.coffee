@@ -47,10 +47,12 @@ App.filter "markdown", ()->
 App.controller "ListCtrl", ["$scope", "Staff", ($scope, Staff) ->
   $scope.loading = true
   $scope.staffList = {}
-  $(document).ready ->
-    Staff.get (result) ->
-      $scope.loading = false
-      $scope.staffList = result.users
+  Staff.get (result) ->
+    $scope.loading = false
+    $scope.staffList = result.users
+
+  $scope.$on "$destory", ()->
+    $scope.staffList = null
 ]
 
 generateLinkObject = (type, data) ->
@@ -71,23 +73,22 @@ App.controller "ProfileCtrl", ["$scope", "$routeParams", "$q", "$location", "Sta
 
   params = {username: $params.username}
 
-  $(document).ready ->
-    $q.all({
-      profile: (Staff.get(params)).$promise
-      information: (Github.info(params)).$promise
-      biography: (Github.biography(params)).$promise
-    }).then (results) ->
-      $scope.loading = false
-      $scope.profile = results.profile.user
-      $scope.information = results.information
-      $scope.biography = results.biography.markdown
+  $q.all({
+    profile: (Staff.get(params)).$promise
+    information: (Github.info(params)).$promise
+    biography: (Github.biography(params)).$promise
+  }).then (results) ->
+    $scope.loading = false
+    $scope.profile = results.profile.user
+    $scope.information = results.information
+    $scope.biography = results.biography.markdown
 
-      # Load Links
-      for linkType in linkTypes
-        $scope.links.push(generateLinkObject(linkType, $scope.information[linkType])) if $scope.information[linkType]
+    # Load Links
+    for linkType in linkTypes
+      $scope.links.push(generateLinkObject(linkType, $scope.information[linkType])) if $scope.information[linkType]
 
-    , (error) ->
-      $scope.hasError = true
-      $scope.error = "喔喔，好像找不到這個人的自我介紹。"
+  , (error) ->
+    $scope.hasError = true
+    $scope.error = "喔喔，好像找不到這個人的自我介紹。"
 ]
 
