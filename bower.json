@@ -22,7 +22,7 @@
     "angular-sanitize": "~1.2.12",
     "angular-route": "~1.2.12",
     "modernizr": "~2.7.1",
-    "markdown": "~0.5.0",
+    "marked": "~0.3.2",
     "zepto": "~1.1.2",
     "angular": "~1.2.12"
   }
