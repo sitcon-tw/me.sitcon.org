@@ -38,7 +38,7 @@ App.config ["$routeProvider", "$locationProvider", ($routeProvider, $locationPro
 
 App.filter "markdown", ()->
   return (input) ->
-    markdown.toHTML(input.toString()) if input
+    marked(input.toString()) if input
 
 ###
 # Controllers
