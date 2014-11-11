@@ -36,7 +36,7 @@
   App.filter("markdown", function() {
     return function(input) {
       if (input) {
-        return markdown.toHTML(input.toString());
+        return marked(input.toString());
       }
     };
   });
