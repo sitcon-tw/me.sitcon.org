@@ -13,7 +13,7 @@
   App.factory("Staff", [
     "$resource", "$http", function($resource, $http) {
       $http.defaults.useXDomain = true;
-      return $resource("http://staff.sitcon.org/users/:username", {}, {
+      return $resource("https://staff.sitcon.org/users/:username", {}, {
         get: {
           method: "GET",
           headers: {
